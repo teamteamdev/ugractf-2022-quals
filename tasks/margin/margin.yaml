@@ -1,0 +1,12 @@
+category:  misc
+points:    100
+title:     Поля той книги были слишком узки
+author:    kalan
+description:
+    <p>Многие математики пытались доказать Великую теорему Ферма, и один вроде даже смог, но так сложно и непонятно, что ему всё равно многие не поверили. Один из таких недоверчивых математиков надеется найти контрпримеры, да такие, чтобы всем сразу стало всё очевидно. Помогите ему и опровергните теорему.</p>
+generator: kyzylborda-docker-generator Dockerfile.generator ./generator.py
+daemon:
+    exec: kyzylborda-docker-compose-daemon
+    cwd: app
+    socket: ./margin.sock
+    socket_type: http
