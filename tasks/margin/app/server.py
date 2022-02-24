@@ -25,7 +25,7 @@ def get_flag(token):
     return PREFIX + hmac.new(SECRET2, token.encode(), "sha256").hexdigest()[:SALT2_SIZE]
 
 
-def build_app():
+def make_app(state_dir):
     app = web.Application()
     routes = web.RouteTableDef()
 
