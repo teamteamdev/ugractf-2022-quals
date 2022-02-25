@@ -77,7 +77,7 @@ async def init_database(token):
             author TEXT NOT NULL,
             data TEXT NOT NULL
         )''')
-        await db.execute(f'''INSERT INTO request (data) VALUES (
+        await db.execute(f'''INSERT INTO request (author, data) VALUES (
             'ivanovas', '{encrypt(get_flag(token, 1))}'
         )''')
         await db.commit()
