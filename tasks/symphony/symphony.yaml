@@ -1,0 +1,7 @@
+category:  ppc
+points:    350
+title:     Играет как умеет
+author:    kalan
+description:
+    <p>Один композитор при зарубежном военном оркестре, назовём его словом на букву Y, написал симфонию.</p>
+generator: ./run_generator.sh
