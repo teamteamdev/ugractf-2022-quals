@@ -1,4 +1,4 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i sh -p python3 lilypond strace
+#!nix-shell -i sh -p python3 lilypond
 
-exec strace -f -e trace=!ipc ./generator.py "$@"
+exec ./generator.py "$@"
