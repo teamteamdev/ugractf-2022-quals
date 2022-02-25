@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  # Make it impossible to guess DNS name
+  webdept-bc51d237a5b048927a09d57d11bf154b:
+    build: docker-base
+    image: ugractf/webdept
+    user: "${DOCKER_USER}"
+    command: ./server.py "${STATEDIR}" "${TMPDIR}"
+    volumes:
+      - "./admin:/app:ro"
+      - "${TMPDIR}:${TMPDIR}"
+      - "${STATEDIR}:${STATEDIR}"
+    links:
+      - auth-bc51d237a5b048927a09d57d11bf154b
+      - decrypt-bc51d237a5b048927a09d57d11bf154b
+    networks:
+      internal:
+        ipv4_address: 10.13.37.159
+      default:
+  auth-bc51d237a5b048927a09d57d11bf154b:
+    build: docker-base
+    image: ugractf/webdept
+    command: ./server.py "${STATEDIR}" "${TMPDIR}"
+    volumes:
+      - "./auth:/app:ro"
+      - "${TMPDIR}:${TMPDIR}"
+      - "${STATEDIR}:${STATEDIR}"
+    networks:
+      internal:
+        ipv4_address: 10.13.37.62
+  decrypt-bc51d237a5b048927a09d57d11bf154b:
+    build: docker-base
+    image: ugractf/webdept
+    command: ./server.py "${STATEDIR}" "${TMPDIR}"
+    volumes:
+      - "./decrypt:/app:ro"
+      - "${TMPDIR}:${TMPDIR}"
+      - "${STATEDIR}:${STATEDIR}"
+    networks:
+      internal:
+        ipv4_address: 10.13.38.116
+networks:
+  internal:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.13.36.0/22
+

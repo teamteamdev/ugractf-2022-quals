@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if requests %}
+<h1>Все запросы</h1>
+
+{% for request in requests %}
+<ul>
+    <li><code>{{ request[1] }}</code></li>
+</ul>
+{% endfor %}
+{% endif %}
+
+<h1>Ваш запрос</h1>
+
+<p>Если какие-то сайты на работе работают медленно, пожалуйста, сообщите об этом нам.</p>
+
+{% if ok %}
+<div class='alert alert-danger'>
+    Успех! Мы вернемся к вам с ответом!
+</div>
+{% endif %}
+
+<form method="POST" action="">
+    <div class="mb-3">
+        <label for="text" class="form-label">Проблема (не более 280 символов)</label>
+        <textarea rows="3" class="form-control" id="text" name="text" required></textarea>
+    </div>
+    <button class="btn btn-success">Заявить</button>
+</form>
+
+{% endblock %}

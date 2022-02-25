@@ -1,0 +1,17 @@
+category: web
+points:   400
+name:     webdept
+title:    Веб-департамент I
+author:   nsychev
+description: |
+    <p>Одна небезызвестная социальная сеть запустила веб-департамент. Ведущие специалисты будут искать неправдивую информацию в интернете — ссылки на неё в социальной сети разместить больше не выйдет. Теперь пользователи в безопасности!</p>
+    <p>Однако, нам кажется, руководитель веб-департамента что-то скрывает. Мы нашли их служебный ресурс и даже QR-код одного из сотрудников для одноразовых кодов. Поможете немного освоиться в сети?</p>
+    <p><em>Примечание.</em> Чтобы решить это задание, вам нужно авторизоваться как пользователь <code>admin</code>.</p>
+attachments_path: public/
+generator:
+    exec: kyzylborda-docker-generator Dockerfile.generator ./generate.py
+    multi_generator_key: webdept
+daemon: app/run_daemon.sh
+daemon_isolate: false
+daemon_socket_type: http
+daemon_socket: webdept.sock

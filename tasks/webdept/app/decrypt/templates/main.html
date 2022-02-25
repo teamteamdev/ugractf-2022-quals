@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>DECODER MESSAGING SERVICE</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1>Decoder Messaging Service</h1>
+            <p>Вы можете расшифровать ваши сообщения в безопасной среде расшифровки. В целях безопасности зашифрованные сообщения будут расшифрованы в печатный вид (принтер). Никому не передавайте расшифрованные сообщения и зашифрованные сообщения тоже.</p>
+
+            {% if result %}
+            <div class="alert alert-danger">
+                <h2>Результат операции</h2>
+                <p>{{ result }}</p>
+            </div>
+            {% endif %}
+
+            <form method="GET" action="">
+                <div class="mb-3">
+                    <label for="enc" class="form-label">Ваш шифр</label>
+                    <textarea class="form-control" id="enc" name="enc" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary">Отправить на расшифровку</button>
+            </form>
+        </div>
+    </body>
+</html>

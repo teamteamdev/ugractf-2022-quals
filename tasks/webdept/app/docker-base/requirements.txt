@@ -1,0 +1,8 @@
+aiohttp
+aiohttp_session
+aiohttp_jinja2
+aiosqlite
+cryptography
+jinja2
+qrcode[pil]
+pycryptodome

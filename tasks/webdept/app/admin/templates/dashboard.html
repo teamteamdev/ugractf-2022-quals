@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ваше задание</h1>
+
+<p>Найти и отметить 1 000 сайтов с фейковыми новостями.</p>
+
+
+<form method="POST" action="">
+    <div class="mb-3">
+        <label for="url" class="form-label">Ссылка</label>
+        <input type="text" class="form-control" id="url" name="url" required />
+    </div>
+    <button class="btn btn-success">Предварительный просмотр</button>
+</form>
+
+{% endblock %}
