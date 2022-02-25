@@ -42,4 +42,3 @@ networks:
     ipam:
       config:
         - subnet: 10.13.36.0/22
-

@@ -136,7 +136,7 @@ def build_app():
     async def auth_action(request):
         token = request.match_info['token']
 
-        timeout = aiohttp.ClientTimeout(total=1)
+        timeout = aiohttp.ClientTimeout(total=0.5)
         try:
             body = await request.post()
             username = body['username']
@@ -179,7 +179,7 @@ def build_app():
     @add_backend
     @with_auth
     async def dashboard_action(request, user, token):
-        timeout = aiohttp.ClientTimeout(total=2)
+        timeout = aiohttp.ClientTimeout(total=0.5)
         try:
             body = await request.post()
             async with aiohttp.ClientSession(timeout=timeout) as rsession:
@@ -209,7 +209,7 @@ def build_app():
         if user == 'admin':
             async with aiosqlite.connect(get_db_path(request.match_info['token'])) as db:
                 db.row_factory = aiosqlite.Row
-                async with db.execute('SELECT * FROM request') as cur:
+                async with db.execute('SELECT * FROM request ORDER BY id ASC LIMIT 10') as cur:
                     requests = await cur.fetchall()
         else:
             requests = []
