@@ -11,7 +11,8 @@ attachments_path: public/
 generator:
     exec: kyzylborda-docker-generator Dockerfile.generator ./generate.py
     multi_generator_key: webdept
-daemon: app/run_daemon.sh
-daemon_isolate: false
-daemon_socket_type: http
-daemon_socket: webdept.sock
+daemon:
+    exec: kyzylborda-docker-compose-daemon
+    cwd: app
+    socket: ./webdept.sock
+    socket_type: http
