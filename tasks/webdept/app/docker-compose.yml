@@ -20,22 +20,18 @@ services:
   auth-bc51d237a5b048927a09d57d11bf154b:
     build: docker-base
     image: ugractf/webdept
-    command: ./server.py "${STATEDIR}" "${TMPDIR}"
+    command: ./server.py
     volumes:
       - "./auth:/app:ro"
-      - "${TMPDIR}:${TMPDIR}"
-      - "${STATEDIR}:${STATEDIR}"
     networks:
       internal:
         ipv4_address: 10.13.37.62
   decrypt-bc51d237a5b048927a09d57d11bf154b:
     build: docker-base
     image: ugractf/webdept
-    command: ./server.py "${STATEDIR}" "${TMPDIR}"
+    command: ./server.py
     volumes:
       - "./decrypt:/app:ro"
-      - "${TMPDIR}:${TMPDIR}"
-      - "${STATEDIR}:${STATEDIR}"
     networks:
       internal:
         ipv4_address: 10.13.38.116
