@@ -210,7 +210,7 @@ def build_app():
         if user == 'admin':
             async with aiosqlite.connect(get_db_path(request.match_info['token'])) as db:
                 db.row_factory = aiosqlite.Row
-                async with db.execute('SELECT * FROM request ORDER BY id ASC LIMIT 10') as cur:
+                async with db.execute('SELECT * FROM request ORDER BY id DESC') as cur:
                     requests = await cur.fetchall()
         else:
             requests = []
@@ -238,7 +238,7 @@ def build_app():
             await db.execute(f'''INSERT INTO request (author, data) VALUES (
                 '{user}', '{encrypted}'
             )''')
-            await db.execute(f'''DELETE FROM request WHERE id IN (SELECT id FROM request WHERE author = '{user}' ORDER BY id DESC OFFSET 5 LIMIT 1000)''');
+            await db.execute(f'''DELETE FROM request WHERE id IN (SELECT id FROM request WHERE author = '{user}' ORDER BY id DESC LIMIT 1000 OFFSET 5)''');
             await db.commit()
 
         raise web.HTTPSeeOther(f'/{token}/dashboard/helpdesk?ok')
