@@ -9,4 +9,4 @@ description: |
 attachments_path: public/
 generator:
     exec: kyzylborda-docker-generator Dockerfile.generator ./generate.py
-    multi_generator: true
+    multi_generator_key: webdept
