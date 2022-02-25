@@ -74,10 +74,11 @@ async def init_database(token):
     async with aiosqlite.connect(path) as db:
         await db.execute('''CREATE TABLE IF NOT EXISTS request (
             id INTEGER PRIMARY KEY,
+            author TEXT NOT NULL,
             data TEXT NOT NULL
         )''')
         await db.execute(f'''INSERT INTO request (data) VALUES (
-            '{encrypt(get_flag(token, 1))}'
+            'ivanovas', '{encrypt(get_flag(token, 1))}'
         )''')
         await db.commit()
 
@@ -224,7 +225,7 @@ def build_app():
     @routes.post('/{token}/dashboard/helpdesk')
     @add_backend
     @with_auth
-    async def helpdesk_action(request, _, token):
+    async def helpdesk_action(request, user, token):
         try:
             body = await request.post()
             message = body['text']
@@ -234,9 +235,10 @@ def build_app():
         encrypted = encrypt(message)
 
         async with aiosqlite.connect(get_db_path(token)) as db:
-            await db.execute(f'''INSERT INTO request (data) VALUES (
-                '{encrypted}'
+            await db.execute(f'''INSERT INTO request (author, data) VALUES (
+                '{user}', '{encrypted}'
             )''')
+            await db.execute(f'''DELETE FROM request WHERE id IN (SELECT id FROM request WHERE author = '{user}' ORDER BY id DESC OFFSET 5 LIMIT 1000)''');
             await db.commit()
 
         raise web.HTTPSeeOther(f'/{token}/dashboard/helpdesk?ok')
