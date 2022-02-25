@@ -49,7 +49,7 @@ def generate():
             "flags": [get_flag(i, token)],
             "substitutions": {},
             "urls": [
-                f"https://webdept.{{ hostname }}/{token}/"
+                f"https://webdept.{{hostname}}/{token}/"
             ]
         }
         for i in range(len(TASKS))
