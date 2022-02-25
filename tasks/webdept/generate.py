@@ -5,8 +5,8 @@ import json
 import sys
 
 TASKS = [
-    "webdept",
-    "webdeptinside"
+    "webdept1",
+    "webdept2"
 ]
 
 PREFIX = [
