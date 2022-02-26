@@ -1,0 +1,12 @@
+category:  ppc
+points:    250
+title:     Разборчивая змейка
+author:    kalan
+description:
+    <p>Чем ближе рекорд, тем интереснее играть.</p>
+generator: ./generator.py
+daemon:
+    exec: kyzylborda-docker-compose-daemon
+    cwd: app
+    socket: ./snekpeek.sock
+    socket_type: http
