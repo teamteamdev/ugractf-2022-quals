@@ -62,9 +62,6 @@ def make_app(state_dir):
 
         async for msg in ws:
             if msg.type == aiohttp.WSMsgType.TEXT:
-                if "error" in game:
-                    return ws
-
                 if msg.data in {"U", "D", "L", "R"}:
                     oldhead = game["head"][:]
                     if msg.data == "U":
@@ -116,6 +113,8 @@ def make_app(state_dir):
                     game["error"] = "Invalid data received from client"
 
                 await ws.send_json(game)
+                if "error" in game:
+                    return ws
             elif msg.type == aiohttp.WSMsgType.ERROR:
                 return ws
 
