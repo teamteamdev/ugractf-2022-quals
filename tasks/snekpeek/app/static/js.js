@@ -10,6 +10,9 @@ const err = text => {
         document.getElementById("errtext").innerText = text;
         document.getElementById("err").style.display = "block";
     }
+    if (timer) {
+        window.clearInterval(timer);
+    }
 };
 
 const onClose = e => {
@@ -96,3 +99,28 @@ window.onkeydown = e => {
 socket.onclose = onClose;
 socket.onerror = onError;
 socket.onmessage = onMessage;
+
+setTime = () => {
+    time = parseInt(window.localStorage.getItem("time"));
+    if (Number.isNaN(time)) {
+        time = 0;
+    }
+    document.getElementById("time").innerText = Math.trunc(time / 36000).toString() + 
+                                                (Math.trunc(time / 3600) % 10).toString() + ":" + 
+                                                (Math.trunc(time / 600) % 6).toString() + 
+                                                (Math.trunc(time / 60) % 10).toString() + ":" + 
+                                                (Math.trunc(time / 10) % 6).toString() + 
+                                                (time % 10).toString();
+}
+
+window.setInterval(() => {
+    time = parseInt(window.localStorage.getItem("time"));
+    if (Number.isNaN(time)) {
+        time = 0;
+    }
+    ++time;
+    window.localStorage.setItem("time", time.toString());
+    setTime();
+}, 1000);
+
+setTime();

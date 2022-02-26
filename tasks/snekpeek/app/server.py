@@ -107,7 +107,8 @@ def make_app(state_dir):
                     if game["head"] == game["target"]:
                         valid_targets = valid_points - snake_points
                         if not valid_targets:
-                            game["error"] = "Unable to place new target within any of the permitted regions"
+                            game["error"] = ("Unable to place new target because all permitted "
+                                             "target locations are already occupied by snek")
                             game["target"] = None
                         game["target"] = list(random.choice(list(valid_targets)))
                         game["score"] += 10
