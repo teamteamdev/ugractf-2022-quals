@@ -1,4 +1,6 @@
 var direction = "U";
+var buffer = "";
+var recvFinished = true;
 var timer;
 
 const TICK = 250;
@@ -65,10 +67,23 @@ const onMessage = e => {
     if (data.error) {
         err(data.error);
     }
+
+    if (buffer) {
+        socket.send(buffer);
+        buffer = "";
+        recvFinished = false;
+    } else {
+        recvFinished = true;
+    }
 };
 
 advance = () => {
-    socket.send(direction);
+    buffer += direction;
+    if (recvFinished) {
+        socket.send(buffer);
+        buffer = "";
+        recvFinished = false;
+    }
 }
 
 window.onkeydown = e => {
