@@ -111,9 +111,9 @@
 
             {% if form and not "x-quartic" in errors and not "y-quartic" in errors and not "z-quartic" in errors %}
                 {% if "quartic" in errors %}
-                    <p class="error">Error: this is not a counterexample for the cubic case, because it is not true that {{ form["x-quartic"] }}<sup>4</sup> + {{ form["y-quartic"] }}<sup>4</sup> = {{ form["z-quartic"] }}<sup>4</sup>
+                    <p class="error">Error: this is not a counterexample for the quartic case, because it is not true that {{ form["x-quartic"] }}<sup>4</sup> + {{ form["y-quartic"] }}<sup>4</sup> = {{ form["z-quartic"] }}<sup>4</sup>
                 {% else %}
-                    <p class="okay">This counterexample for the cubic case is valid, because indeed, {{ form["x-quartic"] }}<sup>4</sup> + {{ form["y-quartic"] }}<sup>4</sup> = {{ form["z-quartic"] }}<sup>4</sup>
+                    <p class="okay">This counterexample for the quartic case is valid, because indeed, {{ form["x-quartic"] }}<sup>4</sup> + {{ form["y-quartic"] }}<sup>4</sup> = {{ form["z-quartic"] }}<sup>4</sup>
                 {% endif %}
             {% endif %}
             <p><input type="submit" />
