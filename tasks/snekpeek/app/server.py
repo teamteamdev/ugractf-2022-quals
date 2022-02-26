@@ -50,7 +50,7 @@ def make_app(state_dir):
     async def websocket_handler(request):
         token = request.match_info["token"]
 
-        ws = web.WebSocketResponse(heartbeat=5, receive_timeout=10, timeout=10)
+        ws = web.WebSocketResponse(heartbeat=5, receive_timeout=10, timeout=10, max_msg_size=2048)
         await ws.prepare(request)
 
         q = qr(get_flag(token))
