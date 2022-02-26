@@ -104,8 +104,6 @@ with tempfile.TemporaryDirectory() as temp_dir:
         cwd=temp_dir
     )
 
-    print(x, temp_dir)
-
     shutil.copy(os.path.join(temp_dir, "program"), os.path.join(attachments_dir, "anft_viewer_PRE-RELEASE"))
 
 json.dump({"flags": [flag]}, sys.stdout)
