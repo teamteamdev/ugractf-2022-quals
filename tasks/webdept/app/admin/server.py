@@ -156,6 +156,8 @@ def build_app():
                         raise web.HTTPInternalServerError()
         except KeyError:
             raise web.HTTPBadRequest()
+        except web.HTTPException:
+            raise
         except:
             raise web.HTTPGatewayTimeout()
 
