@@ -1,0 +1,16 @@
+category: crypto
+points:   400
+title:    noteasy03
+author:   ksixty
+description: >
+  <p><em>Цезарь скривился,
+  <br>Замкнулся в себе.
+  <br>Преумножение.
+  </em></p>
+  <p>
+    <img src="static/alphabet.png">
+  </p>
+attachments_path: attachments
+static_path: static
+generator:
+    exec: kyzylborda-docker-generator Dockerfile.generator ./generate.py
