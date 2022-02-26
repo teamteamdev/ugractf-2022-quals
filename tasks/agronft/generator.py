@@ -100,7 +100,8 @@ with tempfile.TemporaryDirectory() as temp_dir:
         f.write(prepare_c_source(MASKS, mixed))
 
     x = subprocess.check_call(
-        ["gcc", "program.c", "-oprogram", "-Os", "-s", "-ludev", "-fno-stack-protector", "-zexecstack", "-no-pie"],
+        ["gcc", "program.c", "-oprogram", "-Os", "-s", "-static", "-l:libudev.a",
+         "-lpthread", "-fno-stack-protector", "-zexecstack", "-no-pie"],
         cwd=temp_dir
     )
 

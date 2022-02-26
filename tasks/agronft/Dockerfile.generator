@@ -1,0 +1,11 @@
+FROM python:3
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends gcc build-essential git && \
+    pip install --no-cache-dir jinja2 pillow && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN cd /tmp && \
+    git clone 'https://github.com/illiliti/libudev-zero.git' && \
+    cd libudev-zero && \
+    make && make PREFIX=/usr install
