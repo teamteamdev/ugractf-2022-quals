@@ -11,5 +11,5 @@ urls:
 daemon:
     exec: kyzylborda-docker-compose-daemon
     cwd: app
-    socket: ./webdept.sock
+    socket: ./betagost.sock
     socket_type: http
