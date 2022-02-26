@@ -1,5 +1,5 @@
 FROM python:3-alpine
-RUN apk add --no-cache gcc musl-dev linux-headers
+RUN apk add --no-cache gcc musl-dev linux-headers python3-dev jpeg-dev zlib-dev
 RUN pip install gunicorn
 WORKDIR /app
 COPY requirements.txt requirements.txt
