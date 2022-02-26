@@ -193,6 +193,7 @@ def generate():
                 font_size=18
             ))
         
+        (destination / "attachments").mkdir(parents=True, exist_ok=True)
         with (destination / "attachments" / "flag.pdf").open("wb") as pdf_file:
             PDF.dumps(pdf_file, pdf)
 
