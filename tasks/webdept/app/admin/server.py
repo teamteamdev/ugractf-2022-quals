@@ -182,7 +182,7 @@ def build_app():
     @add_backend
     @with_auth
     async def dashboard_action(request, user, token):
-        timeout = aiohttp.ClientTimeout(total=0.5)
+        timeout = aiohttp.ClientTimeout(total=1)
         try:
             body = await request.post()
             async with aiohttp.ClientSession(timeout=timeout) as rsession:
