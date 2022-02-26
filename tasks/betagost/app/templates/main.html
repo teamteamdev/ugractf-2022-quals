@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8" />
+    <title>GOST Future</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro&display=swap');
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            font: 16px Roboto, monospace;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4em;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        textarea, button {
+            font: inherit;
+        }
+
+        pre {
+            font: 16px 'Source Code Pro', monospace;
+        }
+    </style>
+
+    <body>
+        <div class="data">
+            {% if encrypted %}
+            <h1>Успех</h1>
+            <p>Ваши зашифрованные данные в Base64:</p>
+            <pre><code>{{ encrypted}}</code></pre>
+            <p>Напишите отзыв о шифре ГОСТ 34.13-2022 (функция в разработке).</p>
+            {% else %}
+            <h1>GOST Future</h1>
+            <p>Испытайте новый быстрый алгоритм шифрования — проект ГОСТ 34.13-2022:</p>
+            <form method="POST">
+                <textarea rows="2" placeholder="Ваши данные (до 32 символов)" name="data"></textarea>
+                <p><button>Шифровать</button></p>
+            </form>
+            {% endif %}
+            <p class="footer">&copy; 2022</p>
+        </div>
+    </body>
+</html>
