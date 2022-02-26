@@ -193,7 +193,7 @@ def generate():
                 font_size=18
             ))
         
-        with (destination / "flag.pdf").open("wb") as pdf_file:
+        with (destination / "attachments" / "flag.pdf").open("wb") as pdf_file:
             PDF.dumps(pdf_file, pdf)
 
     json.dump({
