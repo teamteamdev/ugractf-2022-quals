@@ -5,6 +5,7 @@ import hmac
 import io
 import json
 import random
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -193,9 +194,14 @@ def generate():
                 font_size=18
             ))
         
-        (destination / "attachments").mkdir(parents=True, exist_ok=True)
-        with (destination / "attachments" / "flag.pdf").open("wb") as pdf_file:
+        (destination / "cmap1" / "attachments").mkdir(parents=True, exist_ok=True)
+        (destination / "cmap2" / "attachments").mkdir(parents=True, exist_ok=True)
+        with (destination / "cmap1" / "attachments" / "flag.pdf").open("wb") as pdf_file:
             PDF.dumps(pdf_file, pdf)
+        shutil.copy(
+            destination / "cmap1" / "attachments" / "flag.pdf",
+            destination / "cmap2" / "attachments" / "flag.pdf"
+        )
 
     json.dump({
         TASKS[i]: {
