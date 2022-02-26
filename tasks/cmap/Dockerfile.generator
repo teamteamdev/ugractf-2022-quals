@@ -1,0 +1,8 @@
+FROM python:3
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl fonts-noto-mono fuse && \
+    curl -L https://github.com/fontforge/fontforge/releases/download/20201107/FontForge-2020-11-07-21ad4a1-x86_64.AppImage -o /usr/bin/fontforge && \
+    chmod +x /usr/bin/fontforge && \
+    pip install --no-cache-dir borb jinja2 pillow && \
+    rm -rf /var/lib/apt/lists/*
