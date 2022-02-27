@@ -1,0 +1,1 @@
+gcc -Wl,--section-start=.flags=0x21414141 -m32 -fno-stack-protector -fno-pie -no-pie -O0 shout.c -o shout

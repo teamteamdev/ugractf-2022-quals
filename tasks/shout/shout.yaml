@@ -1,0 +1,15 @@
+category: "pwn"
+title:    "Поорите"
+points:   75
+author:   nsychev
+description: |
+    <p>Расслабьтесь. Глубоко вдохните — и …</p>
+attachments_path: attachments
+generator: kyzylborda-docker-generator Dockerfile.generator ./generate.py
+bullets:
+  - <code>nc shout.q.2022.ugractf.ru 4141</code>
+daemon:
+  exec: app/start_server.sh
+  socket: shout.sock
+  socket_type: tcp
+  tcp_port: 4141
