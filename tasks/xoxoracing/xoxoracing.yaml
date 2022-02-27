@@ -1,0 +1,13 @@
+category:  crypto
+points:    100
+title:     Хохорейсинг
+author:    kalan
+description:
+    <p>Если вы уже наигрались в <a href="../snekpeek/">Разборчивую змейку</a>, самое время переключиться на другую игру, попроще.</p>
+attachments_path: attachments
+generator: ./generator.py
+daemon:
+    exec: kyzylborda-docker-compose-daemon
+    cwd: app
+    socket: ./xoxoracing.sock
+    socket_type: http

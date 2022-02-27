@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>XOXORACING</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+      body {
+          font-size: 15px;
+          font-family: 'share tech mono', monospace;
+          background: linear-gradient(to bottom, #000, #666);
+          background-size: 100vw 100vh;
+          height: 100%;
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: 100vh;
+          margin: 0;
+          padding: 0;
+      }
+      .segment {
+          display: flex;
+          justify-content: space-around;
+          align-items: baseline;
+          background: #0001;
+      }
+      .segment label {
+          text-transform: uppercase;
+          font-size: 1.5em;
+          opacity: .5;
+      }
+      .segment.active label {
+          opacity: 1;
+      }
+      h1 {
+          text-align: center;
+          font-size: 4em;
+          line-height: 1em;
+          width: min-content;
+          margin: 1em auto;
+          padding: 0 20px 0;
+          border-radius: 50px;
+          background: linear-gradient(to right, black, white, black, white, black, white, black, white, black, white, black, white);
+
+      }
+      h1 span {
+          background: linear-gradient(to left, black, white, black, white, black, white, black, white, black, white, black, white);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          -moz-text-fill-color: transparent;
+          color: #fff;
+          text-shadow: 0 2px 5px #0003;
+      }
+      .field {
+          flex-shrink: 0;
+          font-size: 1.5em;
+          width: 46.5ch;
+          background: #0002;
+          padding: 0.25em;
+          margin: 1em;
+          display: flex;
+          justify-content: space-between;
+          border-radius: 100px;
+      }
+      #ciphertext {
+          padding-left: 0.5em;
+      }
+      .segment.active {
+          background: #9F04;
+      }
+      .segment.active .field {
+          background: #FFF2;
+      }
+      .field .text {
+          border-radius: 100px 0 0 100px;
+          width: 41.5ch;
+          padding: 0 0 0 0.5em;
+          font-family: inherit;
+          font-size: inherit;
+          border: 0;
+          background: #FFF9;
+      }
+      .field .text:focus {
+          background: #FFF;
+      }
+      .field input[type="submit"] {
+          border-radius: 0 100px 100px 0;
+          font-size: inherit;
+          display: inline-block;
+          width: 5ch;
+          border: 0;
+          padding-right: 12px;
+          background: #9F08;
+      }
+      .field input[type="submit"]:hover {
+          background: #9F0;
+      }
+      .field input[disabled] {
+          background: #8884 !important;
+      }
+      #text[disabled] {
+          color: white !important;
+      }
+      .field div {
+          padding: 3px;
+      }
+      .badsymbol {
+          box-sizing: border-box;
+          display: inline-block;
+          width: 1ch;
+          height: 1.2ch;
+          overflow: hidden;
+          border: 1px solid;
+          font-weight: bold;
+          animation: error 500ms infinite;
+      }
+      .badsymbol > span {
+          color: inherit;
+          font-family: arial, sans-serif;
+          display: inline-block;
+          text-align: justify;
+          text-align-last: justify;
+          letter-spacing: -3px;
+          word-wrap: none;
+          line-height: 20px;
+          transform: scale(0.26, 0.25);
+          transform-origin: top left;
+      }
+      .progress {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-direction: column;
+      }
+      .progress p {
+          margin: 0.5em 0 0;
+          background: #0003;
+          border-radius: 100px;
+          padding: 5px 5px;
+          width: calc(70ch + 10px);
+          font-size: 1.25em;
+      }
+      .progress p > span {
+          background: linear-gradient(to right, black, white, black, white, black, white, black, white, black, white, black, white);
+          border-radius: 100px 0 0 100px;
+          padding: 0 5px;
+      }
+      .progress.done p > span {
+          border-radius: 100px !important;
+      }
+      .progress p span > span {
+          background: linear-gradient(to left, black, white, black, white, black, white, black, white, black, white, black, white);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          -moz-text-fill-color: transparent;
+          color: #fff;
+          text-shadow: 0 2px 5px #0003;
+      }
+      .timer {
+          margin: 0 0 1.5em;
+          font-size: 3em;
+          width: 2ch;
+          height: 2ch;
+          padding: 10px 20px 20px;
+          border-radius: 0 0 50% 50%;
+          background: #0003;
+      }
+      .eeee {
+          outline: 1px solid white;
+          outline-offset: -1px;
+      }
+      .logo {
+          text-align: center;
+      }
+      .logo p {
+          margin: -1em 0 0;
+          font-size: 1.5em;
+          opacity: .4;
+      }
+      .red {
+          background: rgb(90, 0, 0, 0.6);
+      }
+      .yellow {
+          background: rgb(160, 160, 0, 0.6);
+      }
+      .green {
+          background: rgb(0, 130, 0, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <h1><span>XOXORACING</span></h1>
+      <p>A fun game for all to test their motor skills and MORE!</p>
+    </div>
+    <div>
+      <div id="seg-1" class="segment">
+        <label for="text">Original text&nbsp;</label>
+        <div class="field">
+          <input maxlength="40" type="text" id="text" class="text" disabled>
+          <input type="submit" id="submit-text" disabled value="OK">
+        </div>
+      </div>
+      <div id="seg-2" class="segment active">
+        <label for="key">Encryption key</label>
+        <div class="field">
+          <input maxlength="40" type="text" id="key" class="text">
+          <input type="submit" id="submit-key" value="OK">
+        </div>
+      </div>
+      <div id="seg-3" class="segment">
+        <label>Encrypted text</label>
+        <div class="field">
+          <div id="ciphertext">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+    <div class="progress" id="progress">
+      <p><span><span id="flag"><span></span></p>
+      <div class="timer" id="timer">00</div>
+    </div>
+    <script type="text/javascript" src="/static/js.js"></script>
+  </body>
+</html>
