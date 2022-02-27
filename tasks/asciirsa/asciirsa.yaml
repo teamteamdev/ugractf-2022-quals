@@ -1,0 +1,8 @@
+category:  crypto
+points:    75
+title:     ASCII-RSA
+author:    nsychev
+description: >
+    <p>Очередная реализация известного криптографического алгоритма впечатляет своей производительностью.</p>
+generator: kyzylborda-docker-generator Dockerfile.generator ./generate.py
+attachments_path: attachments
