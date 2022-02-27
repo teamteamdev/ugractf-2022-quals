@@ -3,6 +3,7 @@
 import aiohttp
 import aiohttp.web as web
 import aiohttp_jinja2 as jinja2
+import asyncio
 
 import hmac
 import json
@@ -50,7 +51,7 @@ def make_app(state_dir):
     async def websocket_handler(request):
         token = request.match_info["token"]
 
-        ws = web.WebSocketResponse(heartbeat=5, receive_timeout=10, timeout=10, max_msg_size=2048)
+        ws = web.WebSocketResponse(heartbeat=5, receive_timeout=15, timeout=15, max_msg_size=2048)
         await ws.prepare(request)
 
         q = qr(get_flag(token))
@@ -64,6 +65,19 @@ def make_app(state_dir):
 
         async for msg in ws:
             if msg.type == aiohttp.WSMsgType.TEXT:
+                snake_points = [tuple(game["head"])]
+                h = game["head"][:]
+                for c in game["tail"]:
+                    if c == "U":
+                        h[1] -= 1
+                    elif c == "L":
+                        h[0] -= 1
+                    elif c == "D":
+                        h[1] += 1
+                    elif c == "R":
+                        h[0] += 1
+                    snake_points += [tuple(h)]
+
                 for c in msg.data:
                     if c in {"U", "D", "L", "R"}:
                         oldhead = game["head"][:]
@@ -85,36 +99,29 @@ def make_app(state_dir):
                         if game["head"] != game["target"]:
                             game["tail"] = game["tail"][:-1]
 
-                        snake_points = {tuple(game["head"])}
-                        h = game["head"][:]
-                        for c in game["tail"]:
-                            if c == "U":
-                                h[1] -= 1
-                            elif c == "L":
-                                h[0] -= 1
-                            elif c == "D":
-                                h[1] += 1
-                            elif c == "R":
-                                h[0] += 1
-                            snake_points.add(tuple(h))
-                        
                         if not (0 <= game["head"][0] < size) or not (0 <= game["head"][1] < size):
                             game["head"] = oldhead
                             game["error"] = "Snek has crashed into a wall"
-                        if len(snake_points) < len(game["tail"]) + 1:
+                            break
+                        elif tuple(game["head"]) in snake_points[:-1]:
                             game["error"] = "Snek has crashed into itself"
+                            break
+                        snake_points = [tuple(game["head"])] + snake_points[:-1]
 
                         if game["head"] == game["target"]:
-                            valid_targets = valid_points - snake_points
+                            valid_targets = valid_points - set(snake_points)
                             if not valid_targets:
                                 game["error"] = ("Unable to place new target because all permitted "
                                                  "target locations are already occupied by snek")
                                 game["target"] = None
+                                break
                             game["target"] = list(random.choice(list(valid_targets)))
                             game["score"] += 10
                     else:
                         game["error"] = "Invalid data received from client"
+                        break
 
+                await asyncio.sleep(0.02)
                 await ws.send_json(game)
                 if "error" in game:
                     return ws
