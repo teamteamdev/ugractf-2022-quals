@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Poooli L3</title>
+        <style>
+            body {
+                font-family: 'Roboto', Verdana, 'DejaVu Sans', sans-serif;
+                color: black;
+                background: white;
+                width: 1250px;
+                margin: 0 auto;
+                text-align: center; 
+            }
+            form, input {
+                font: inherit;
+            }
+            .p {
+                border: 1px solid #BBB;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Принтер Poooli L3</h1>
+        {% if result %}
+        <p>Было напечатано следующее.
+        <p><img class="p" src="data:image/png;base64,{{ result }}" /></p>
+        {% if flag %}
+        <p>Кстати, это ровно то, что нужно. <tt>{{ flag }}</tt>
+        {% endif %}
+        <p><a href="">Напечатать ещё</a>
+        {% elif error %}
+        <p>Было ничего не напечатано, потому что не было предоставлено данных.
+        <p><a href="">Напечатать ещё</a>
+        {% elif error_big %}
+        <p>Было ничего не напечатано, потому что данных слишком много.
+        <p><a href="">Напечатать ещё</a>
+        {% elif error_high %}
+        <p>Было ничего не напечатано, потому что если столько напечатать, то бумага закончится.
+        <p><a href="">Напечатать ещё</a>
+        {% else %}
+        <p>Напечатайте же что-нибудь.
+        <form method="post" action="" enctype="multipart/form-data">
+            <p><input type="file" name="data" accept=".prn">
+            <p><input type="submit" value="Напечатать" />
+        </form>
+        {% endif %}
+    </body>
+</html>
+
