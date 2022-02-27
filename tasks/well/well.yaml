@@ -1,0 +1,16 @@
+category:  web
+points:    100
+title:     Well known
+author:    nsychev
+description: >
+    <p>В интернете нашли страничку одного известного киберинженера. Узнайте, что он знает и любит.</p>
+flags:
+  - ugra_matrix_is_well_known_to_everyone_31b66f2022d2e62ed
+attachments_path: attachments
+urls:
+  - https://well.{hostname}
+daemon:
+    exec: kyzylborda-docker-compose-daemon
+    cwd: app
+    socket: ./betagost.sock
+    socket_type: http

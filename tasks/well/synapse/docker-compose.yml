@@ -1,0 +1,22 @@
+version: "3"
+services:
+  synapse:
+    image: matrixdotorg/synapse:latest
+    volumes:
+      - synapse-data:/data
+    ports:
+      - 127.0.0.1:55008:8008
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=synapse
+      - POSTGRES_USER=synapse
+      - POSTGRES_DB=synapse
+    volumes:
+      - synapse-pg:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+volumes:
+  synapse-data:
+    external: true
+  synapse-pg:
+    external: true
