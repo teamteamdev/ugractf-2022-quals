@@ -1,0 +1,11 @@
+category: "forensics"
+title:     "Прикольная находка"
+points:   100
+author:   ksixty
+description: |
+    <p>Во дворе одной крупной корпорации была обнаружена связка ключей с брелком и флешкой. Пока мы изучаем ключи, предлагаем вам изучить содержимое флешки и брелка.
+attachments_path: attachments
+generator: ./run_generator.sh
+daemon:
+  exec: app/run_server.sh
+  isolate_net: false
