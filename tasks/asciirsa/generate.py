@@ -24,6 +24,9 @@ def generate():
     target_dir = sys.argv[2]
     flag = get_flag(user_id)
 
+    modulo = 256
+    public_key = 17
+
     flag_encrypted = []
     for c in flag:
         char_code = ord(c) * 2 - 1
@@ -31,7 +34,7 @@ def generate():
         flag_encrypted.append(encrypted_char_code)
 
     os.makedirs(os.path.join(target_dir, "attachments"), exist_ok=True)
-    with open(os.path.join(target_dir, "attachments", "flag.enc"), "wb") as flag_file:
+    with open(os.path.join(target_dir, "attachments", "rsa.enc"), "wb") as flag_file:
         flag_file.write(bytes(flag_encrypted))
 
     json.dump({"flags": [flag]}, sys.stdout)
