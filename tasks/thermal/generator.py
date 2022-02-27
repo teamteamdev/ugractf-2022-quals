@@ -4,7 +4,7 @@ import os.path
 import sys
 import json
 import hmac
-import PIL
+import PIL.Image
 
 PREFIX = "ugra_esc_pos_goes_lprrrrrrrr_"
 SECRET1 = b"aen4Ixo8eevieghohXaifeiNg"
