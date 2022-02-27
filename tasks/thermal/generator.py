@@ -35,6 +35,6 @@ left = (N // 1000000) % 100
 top = (N // 10000) % 100
 right = img.size[0] - (N // 100) % 100 - 32
 bottom = img.size[1] - N % 100
-img.crop(left, top, right, bottom).save(os.path.join(static_dir, "thermal-printme.png"))
+img.crop((left, top, right, bottom)).save(os.path.join(static_dir, "thermal-printme.png"))
 
 json.dump({"flags": [flag], "urls": [f"https://thermal.{{hostname}}/{token}/"]}, sys.stdout)
