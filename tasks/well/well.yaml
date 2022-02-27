@@ -1,6 +1,6 @@
 category:  web
 points:    100
-title:     Well known
+title:     Well known and loved
 author:    nsychev
 description: >
     <p>В интернете нашли страничку одного известного киберинженера. Узнайте, что он знает и любит.</p>
@@ -9,8 +9,3 @@ flags:
 attachments_path: attachments
 urls:
   - https://well.{hostname}
-daemon:
-    exec: kyzylborda-docker-compose-daemon
-    cwd: app
-    socket: ./betagost.sock
-    socket_type: http
