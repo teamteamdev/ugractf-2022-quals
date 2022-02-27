@@ -108,9 +108,9 @@ def make_app(state_dir):
                 N = int(token, 16) // 1337
             except:
                 N = 12345678
-            left = (N // 1000000) % 100
+            left = ((N // 1000000) % 100) & 0xfff8
             top = (N // 10000) % 100
-            right = IMAGE.size[0] - (N // 100) % 100 - 32
+            right = (IMAGE.size[0] - (N // 100) % 100 - 32) & 0xfff8
             bottom = IMAGE.size[1] - N % 100
 
             if bottom - top == result.size[1]:

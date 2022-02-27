@@ -31,9 +31,9 @@ os.makedirs(static_dir, exist_ok=True)
 img = PIL.Image.open(os.path.join("app", "full.png"))
 
 N = int(token, 16) // 1337
-left = (N // 1000000) % 100
+left = ((N // 1000000) % 100) & 0xfff8
 top = (N // 10000) % 100
-right = img.size[0] - (N // 100) % 100 - 32
+right = (img.size[0] - (N // 100) % 100 - 32) & 0xfff8
 bottom = img.size[1] - N % 100
 img.crop((left, top, right, bottom)).save(os.path.join(static_dir, "thermal-printme.png"))
 
