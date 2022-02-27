@@ -8,7 +8,7 @@ description:
     <p>Вам даже подсказали, где <a href="https://www.poooli.com/bla4sj-list.html">скачать драйвера</a>, и что драйвера для Мака как-то можно запустить под Линуксом.</p>
     <p>С помощью драйверов вам даже удалось распечатать слова <tt>Test... test... test...</tt>, но после этого всё почему-то перестало работать…</p>
 attachments_path: attachments
-generator: ./generator.py
+generator: ./run_generator.sh
 daemon:
     exec: kyzylborda-docker-compose-daemon
     cwd: app

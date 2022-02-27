@@ -4,4 +4,4 @@ RUN pip install gunicorn
 WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-CMD ["gunicorn", "-b", "unix:/tmp/thermal.sock", "server:make_app(\"/state\")", "--worker-class", "aiohttp.GunicornWebWorker"]
+CMD ["gunicorn", "-w", "2", "-b", "unix:/tmp/thermal.sock", "server:make_app(\"/state\")", "--worker-class", "aiohttp.GunicornWebWorker"]
