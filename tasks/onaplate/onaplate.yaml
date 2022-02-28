@@ -1,0 +1,12 @@
+category:  web
+points:    25
+title:     На блюдечке...
+author:    ksixty
+description:
+    <p>...с золотой каёмочкой.</p>
+generator: kyzylborda-docker-generator Dockerfile.generator ./generator.py
+daemon:
+    exec: kyzylborda-docker-compose-daemon
+    cwd: app
+    socket: ./onaplate.sock
+    socket_type: http

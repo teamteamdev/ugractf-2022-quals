@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Counterexample checker</title>
+        <style>
+            body { font-family: 'Times New Roman', times, 'Liberation Serif', serif; background: white; color: black; }
+            input { font: inherit; color: inherit; }
+            input[type=text] { background: inherit; border: 1px solid gray; }
+            .error { color: #E30; }
+            .okay { color: #3A0; }
+            footer { opacity: 0.5 }
+        </style>
+    </head>
+    <body class="{{ type }}">
+        <h1>Fermat’s last theorem counterexample checker</h1>
+        <p>The theorem states that there are no positive integer solutions for the equation x<sup>n</sup> + y<sup>n</sup> = z<sup>n</sup> for n &gt; 2.</p>
+        <p>Please provide counterexamples for Fermat’s last theorem for cubic and quartic cases.</p>
+        <p>Your counterexamples will be checked by the validator (<a href="validator.py">view source</a>).</p>
+        <form method="post" action=".">
+            <h2>Cubic case (n = 3)</h2>
+
+            <p>x = <input type="text" name="x-cubic" value="{{ form['x-cubic'] }}" />
+            {% if errors["x-cubic"] %}
+            <span class="error">
+                {% if errors["x-cubic"] == "not-an-integer" %}
+                    Error: the provided value is not an integer, as required by the conditions of Fermat’s last theorem
+                {% elif errors["x-cubic"] == "not-positive" %}
+                    Error: it is not true that x &gt; 0, as required by the conditions of Fermat’s last theorem
+                {% else %}
+                    Error: ???????
+                {% endif %}
+            </span>
+            {% endif %}
+
+            <p>y = <input type="text" name="y-cubic" value="{{ form['y-cubic'] }}" />
+            {% if errors["y-cubic"] %}
+            <span class="error">
+                {% if errors["y-cubic"] == "not-an-integer" %}
+                    Error: the provided value is not an integer, as required by the conditions of Fermat’s last theorem
+                {% elif errors["y-cubic"] == "not-positive" %}
+                    Error: it is not true that y &gt; 0, as required by the conditions of Fermat’s last theorem
+                {% else %}
+                    Error: ???????
+                {% endif %}
+            </span>
+            {% endif %}
+
+            <p>z = <input type="text" name="z-cubic" value="{{ form['z-cubic'] }}" />
+            {% if errors["z-cubic"] %}
+            <span class="error">
+                {% if errors["z-cubic"] == "not-an-integer" %}
+                    Error: the provided value is not an integer, as required by the conditions of Fermat’s last theorem
+                {% elif errors["z-cubic"] == "not-positive" %}
+                    Error: it is not true that z &gt; 0, as required by the conditions of Fermat’s last theorem
+                {% else %}
+                    Error: ???????
+                {% endif %}
+            </span>
+            {% endif %}
+
+            {% if form and not "x-cubic" in errors and not "y-cubic" in errors and not "z-cubic" in errors %}
+                {% if "cubic" in errors %}
+                    <p class="error">Error: this is not a counterexample for the cubic case, because it is not true that {{ form["x-cubic"] }}<sup>3</sup> + {{ form["y-cubic"] }}<sup>3</sup> = {{ form["z-cubic"] }}<sup>3</sup>
+                {% else %}
+                    <p class="okay">This counterexample for the cubic case is valid, because indeed, {{ form["x-cubic"] }}<sup>3</sup> + {{ form["y-cubic"] }}<sup>3</sup> = {{ form["z-cubic"] }}<sup>3</sup>
+                {% endif %}
+            {% endif %}
+
+
+            <h2>Quartic case (n = 4)</h2>
+
+            <p>x = <input type="text" name="x-quartic" value="{{ form['x-quartic'] }}" />
+            {% if errors["x-quartic"] %}
+            <span class="error">
+                {% if errors["x-quartic"] == "not-an-integer" %}
+                    Error: the provided value is not an integer, as required by the conditions of Fermat’s last theorem
+                {% elif errors["x-quartic"] == "not-positive" %}
+                    Error: it is not true that x &gt; 0, as required by the conditions of Fermat’s last theorem
+                {% else %}
+                    Error: ???????
+                {% endif %}
+            </span>
+            {% endif %}
+
+            <p>y = <input type="text" name="y-quartic" value="{{ form['y-quartic'] }}" />
+            {% if errors["y-quartic"] %}
+            <span class="error">
+                {% if errors["y-quartic"] == "not-an-integer" %}
+                    Error: the provided value is not an integer, as required by the conditions of Fermat’s last theorem
+                {% elif errors["y-quartic"] == "not-positive" %}
+                    Error: it is not true that y &gt; 0, as required by the conditions of Fermat’s last theorem
+                {% else %}
+                    Error: ???????
+                {% endif %}
+            </span>
+            {% endif %}
+
+            <p>z = <input type="text" name="z-quartic" value="{{ form['z-quartic'] }}" />
+            {% if errors["z-quartic"] %}
+            <span class="error">
+                {% if errors["z-quartic"] == "not-an-integer" %}
+                    Error: the provided value is not an integer, as required by the conditions of Fermat’s last theorem
+                {% elif errors["z-quartic"] == "not-positive" %}
+                    Error: it is not true that z &gt; 0, as required by the conditions of Fermat’s last theorem
+                {% else %}
+                    Error: ???????
+                {% endif %}
+            </span>
+            {% endif %}
+
+            {% if form and not "x-quartic" in errors and not "y-quartic" in errors and not "z-quartic" in errors %}
+                {% if "quartic" in errors %}
+                    <p class="error">Error: this is not a counterexample for the quartic case, because it is not true that {{ form["x-quartic"] }}<sup>4</sup> + {{ form["y-quartic"] }}<sup>4</sup> = {{ form["z-quartic"] }}<sup>4</sup>
+                {% else %}
+                    <p class="okay">This counterexample for the quartic case is valid, because indeed, {{ form["x-quartic"] }}<sup>4</sup> + {{ form["y-quartic"] }}<sup>4</sup> = {{ form["z-quartic"] }}<sup>4</sup>
+                {% endif %}
+            {% endif %}
+            <p><input type="submit" />
+        </form>
+        {% if flag %}
+            <h2>Thank you for your submission</h2>
+            <p>Thank you for your valid submission. It will certainly make mathematics of the world better.
+            <p>You are rewarded with this string: <tt class="okay">{{ flag }}</tt>.
+        {% endif %}
+        <footer>
+        {% if flag %}
+            Thank you for not fooling me.
+        {% else %}
+            Don’t try to fool me.
+        {% endif %}
+        </footer>
+    </body>
+</html>
+
