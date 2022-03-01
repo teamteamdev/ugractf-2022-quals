@@ -18,7 +18,7 @@ def get_flag(token):
 
 
 print("Your token:", end=" ", flush=True)
-token = input().strip()
+token = input().strip().replace("/", "").replace("..", "")
 
 os.makedirs(os.path.join(TEMP_DIR, token), exist_ok=True)
 
@@ -32,6 +32,7 @@ os.execvp(
     "--ro-bind", BINARY, "/app/shout",
     "--chdir", "/app",
     "--tmpfs", "/tmp",
+    "--tmpfs", "/etc",
     "steam-run",
     "/app/shout"]
 )
