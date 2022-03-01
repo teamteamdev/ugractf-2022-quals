@@ -9,6 +9,7 @@ web 300, @nsychev
 > _Примечание._ Чтобы решить это задание, вам нужно авторизоваться как пользователь `admin`.
 >
 > _otp-for-andy77.png_
+>
 > _https://webdept.q.2022.ugractf.ru/760ad278b2aefd1ffece972d6068129a/_
 
 [Write-up](WRITEUP.webdept.md)

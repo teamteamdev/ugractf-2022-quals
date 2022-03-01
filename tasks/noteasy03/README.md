@@ -3,10 +3,12 @@
 crypto 350, @ksixty
 
 > _Цезарь скривился,_
+>
 > _Замкнулся в себе._
+>
 > _Преумножение._
 >
-> ![Пример изображения](writeup/coords.png)
+> ![Пример изображения](writeup/alphabet.png)
 >
 > _ciphertext.txt_
 

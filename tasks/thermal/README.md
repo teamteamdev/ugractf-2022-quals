@@ -11,6 +11,7 @@ reverse 400, @kalan
 > С помощью драйверов вам даже удалось распечатать слова `Test... test... test...`, но после этого всё почему-то перестало работать…
 >
 > _test-test-test.prn_
+>
 > _https://thermal.q.2022.ugractf.ru/9a18a6857bb051b1/_
 
 [Write-up](WRITEUP.md)

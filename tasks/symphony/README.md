@@ -4,7 +4,8 @@
 >
 > Неподготовленному слушателю может быть трудно расслышать в ней всё, что нужно, поэтому автор любезно предлагает начать с разминки.
 >
-> symphony.pdf
-> [warmup.pdf](attachments/warmup.pdf)
+> _symphony.pdf_
+>
+> [_warmup.pdf_](attachments/warmup.pdf)
 
 [Write-up](WRITEUP.md)
