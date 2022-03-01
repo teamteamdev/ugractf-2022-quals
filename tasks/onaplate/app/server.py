@@ -48,6 +48,7 @@ def make_app():
 
 
     @routes.get("/{token}/fl4g%3Fis%3Fh%23r3")
+    @routes.get("/{token}/fl4g%3fis%3fh%23r3")
     async def source(request):
         token = request.match_info["token"]
         resp = web.StreamResponse()
