@@ -1,1 +1,4 @@
 *.tar.gz filter=lfs diff=lfs merge=lfs -text
+tasks/symphony/writeup/symphony.ogg filter=lfs diff=lfs merge=lfs -text
+tasks/symphony/writeup/warmup.ogg filter=lfs diff=lfs merge=lfs -text
+tasks/symphony/writeup/symphony-bottle.ogg filter=lfs diff=lfs merge=lfs -text
