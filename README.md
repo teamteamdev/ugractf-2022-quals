@@ -1,6 +1,6 @@
 # Ugra CTF Quals 2022
 
-[Сайт](https://2022.ugractf.ru)
+[Сайт](https://2022.ugractf.ru) | [Результаты](SCOREBOARD.md)
 
 ## Таски
 
